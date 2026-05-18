@@ -4,7 +4,7 @@ import plotly.express as px
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("/workspaces/blank-app-2/data/인구수_2026.csv", header=[0, 1])
+    df = pd.read_csv("data/인구수_2026.csv", header=[0, 1])
     df.columns = df.columns.map(lambda x: x[0] if x[0] == '행정구역(시군구)별' else f"{x[0]}|{x[1]}")
     df = df.melt(id_vars="행정구역(시군구)별", var_name="구분", value_name="인구수")
     df[["연도", "성별"]] = df["구분"].str.split("|", expand=True)
